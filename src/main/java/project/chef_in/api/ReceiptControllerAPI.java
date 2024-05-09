@@ -16,19 +16,13 @@ public class ReceiptControllerAPI {
     private ReceiptService receiptService;
 
     @GetMapping
-    public ResponseEntity<List<Receipt>> getAllReceipts() {
-        List<Receipt> receipts = receiptService.getAllReceipts();
-        return ResponseEntity.ok().body(receipts);
+    public List<Receipt> getAllReceipts() {
+        return receiptService.getAllReceipts();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Receipt> getReceiptById(@PathVariable("id") int id) {
-        Receipt receipt = receiptService.getReceiptById(id);
-        if (receipt != null) {
-            return ResponseEntity.ok().body(receipt);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public Receipt getReceiptById(@PathVariable("id") int id) {
+        return receiptService.getReceiptById(id);
     }
 
     @PostMapping

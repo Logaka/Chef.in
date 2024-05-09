@@ -5,6 +5,7 @@ import project.chef_in.entity.Image;
 import project.chef_in.entity.Receipt;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ImageRepository extends JpaRepository<Image, Integer> {
         List<Image> getImagesByReceiptId(int id);
