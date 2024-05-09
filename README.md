@@ -19,6 +19,7 @@ Configure the database settings in application.properties file.
    values are postrgres_public_variable.sql file 
     or if it not work in recipe image field exists images that are set to db
     (image.name == receipt.name)
+    Also need to set own variables in application.properties to the Spring Mail Sender
 
     
 Usage
