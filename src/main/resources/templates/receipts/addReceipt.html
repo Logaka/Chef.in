@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Receipt</title>
+</head>
+<body>
+<h2>Add Receipt</h2>
+<form id="receiptForm" action="/receipts/new" method="post" enctype="multipart/form-data">
+    <div>
+        <label for="receiptName">Name of the receipt:</label>
+        <input type="text" id="receiptName" name="name" required>
+    </div>
+    <div>
+        <label for="receiptCategory">Name of the category:</label>
+        <input type="text" id="receiptCategory" name="category" required>
+    </div>
+    <div>
+        <label for="cookingGuide">Enter guide to cook:</label>
+        <textarea id="cookingGuide" name="cookingGuide" required></textarea>
+    </div>
+    <div>
+        <label for="cookingTime">Enter time to cook:</label>
+        <input id="cookingTime" name="cookingTime" required>
+    </div>
+    <div>
+        <label for="image">Select Image:</label>
+        <input type="file" id="image" name="image" accept="image/*">
+    </div>
+    <div>
+        <h3>Ingredients:</h3>
+        <div id="ingredientsContainer">
+            <!-- Ingredient fields will be added dynamically here -->
+        </div>
+        <button type="button" id="addIngredientBtn">Add Ingredient</button>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const addIngredientBtn = document.getElementById("addIngredientBtn");
+        const ingredientsContainer = document.getElementById("ingredientsContainer");
+        let ingredientIndex = 0;
+
+        addIngredientBtn.addEventListener("click", function() {
+            const ingredientFields = `
+                    <div>
+                        <label for="ingredientName${ingredientIndex}">Name:</label>
+                        <input type="text" id="ingredientName${ingredientIndex}" name="ingredients[${ingredientIndex}].name" required>
+
+                        <label for="ingredientUnit${ingredientIndex}">Unit:</label>
+                        <input type="text" id="ingredientUnit${ingredientIndex}" name="ingredients[${ingredientIndex}].unit" required>
+
+                        <label for="ingredientMeasure${ingredientIndex}">Measure:</label>
+                        <input type="text" id="ingredientMeasure${ingredientIndex}" name="ingredients[${ingredientIndex}].measure" required>
+                    </div>
+                `;
+            ingredientsContainer.insertAdjacentHTML("beforeend", ingredientFields);
+            ingredientIndex++;
+        });
+    });
+</script>
+</body>
+</html>
